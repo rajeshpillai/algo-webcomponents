@@ -4,7 +4,11 @@ import { property } from 'lit/decorators.js';
 const logo = new URL('../../assets/open-wc-logo.svg', import.meta.url).href;
 
 import "./components/button";
-
+import "./components/form";
+import "./components/input";
+import "./components/pagination";
+import "./components/theme/theme-provider";
+import "./components/select";
 
 export class AlgoComponents extends LitElement {
   @property({ type: String }) title = 'My app';
@@ -52,34 +56,58 @@ export class AlgoComponents extends LitElement {
     }
   `;
 
-  render() {
-    return html`
-      <main>
-        <div class="logo"><img alt="open-wc logo" src=${logo} /></div>
-        <h1>${this.title}</h1>
+onSubmit(e: { preventDefault: () => void; detail: any; }) {
+  e.preventDefault();
+  console.log(e.detail);
+}
 
-        <p>Edit <code>src/AlgoComponents.ts</code> and save to reload.</p>
-        <a
-          class="app-link"
-          href="https://open-wc.org/guides/developing-components/code-examples"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Code examples
-        </a>
-
-      </main>
+render() {
+  var data = [
+    { id: 1, name: "Abc" },
+    { id: 2, name: "Urvashi Sachdev" },
+    { id: 3, name: "Mannavi Sachdev" },
+  ];
+  return html`<theme-provider theme="black">
+    <my-form @on-submit="${this.onSubmit}">
+      <my-input
+        name="title"
+        placeholder="Title"
+        helpText="My Help"
+      ></my-input>
+      <my-select name="color" .data=${["yellow", "blue"]}></my-select>
       <my-button></my-button>
+    </my-form>
+  </theme-provider>`;
+}
 
-      <p class="app-footer">
-        🚽 Made with love by
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://github.com/open-wc"
-          >open-wc</a
-        >.
-      </p>
-    `;
-  }
+  // render() {
+  //   return html`
+  //     <main>
+  //       <div class="logo"><img alt="open-wc logo" src=${logo} /></div>
+  //       <h1>${this.title}</h1>
+
+  //       <p>Edit <code>src/AlgoComponents.ts</code> and save to reload.</p>
+  //       <a
+  //         class="app-link"
+  //         href="https://open-wc.org/guides/developing-components/code-examples"
+  //         target="_blank"
+  //         rel="noopener noreferrer"
+  //       >
+  //         Code examples
+  //       </a>
+
+  //     </main>
+  //     <my-button></my-button>
+
+  //     <p class="app-footer">
+  //       🚽 Made with love by
+  //       <a
+  //         target="_blank"
+  //         rel="noopener noreferrer"
+  //         href="https://github.com/open-wc"
+  //         >open-wc</a
+  //       >.
+  //     </p>
+  //   `;
+  // }
 }

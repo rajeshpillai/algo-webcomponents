@@ -12,6 +12,8 @@ export class MyButton extends BaseElement {
     );
   }
   render() {
+    console.log("Rendering: Button");
+
     return html`<input
       type="button"
       @click="${this.onClick}"

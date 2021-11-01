@@ -16,5 +16,5 @@
     "rootDir": "./",
     "incremental": true
   },
-  "include": ["**/*.ts", "src/components/button/index.ts", "src/components/base-element.ts"]
+  "include": ["**/*.ts", "src/components/button/index.ts", "src/components/base-element.ts", "src/components/data-table/index.ts.xxx"]
 }

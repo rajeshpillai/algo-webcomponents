@@ -1,0 +1,82 @@
+import { html, css } from "lit";
+import { property } from 'lit/decorators.js';
+
+import BaseElement from "../base-element";
+import "../pagination";
+
+// var _ = require("lodash");
+/**
+ * An example element.
+ *
+ * @fires count-changed - Indicates when the count changes
+ * @slot - This element has a slot
+ * @csspart button - The button
+ */
+export class DataTable extends BaseElement {
+  @property({ type: String }) name = '';
+  @property({ type: Number }) count = 0;
+  @property({ type: Array }) myData = [];
+  @property({ type: String }) sortBy = '';
+  @property({ type: Number }) pageSize = 0;
+  @property({ type: Array }) pagedData = [];
+
+
+  static get styles() {
+    const { cssRules } = document.styleSheets[0];
+    return [
+      css`
+        th {
+          cursor: pointer;
+        }
+      `,
+    ];
+  }
+
+  constructor() {
+    super();
+    this.sortBy = "asc";
+    this.pageSize = 2;
+    this.pagedData = [];
+  }
+
+  firstUpdated() {
+    this.getPagedData();
+  }
+
+  getPagedData() {
+    this.pagedData = this.myData;
+    if (this.myData.length > this.pageSize) {
+      this.pagedData = _.slice(this.myData, 0, this.pageSize);
+    }
+  }
+
+  onSort(col: string) {
+    this.sortBy = this.sortBy == "asc" ? "desc" : "asc";
+    this.myData = _.orderBy(this.myData, [col], [this.sortBy]);
+    this.getPagedData();
+  }
+
+  render() {
+    return html`
+      <div><my-pagination pageSize="3" totalRecords="22" /></div>
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th scope="col" @click="${() => this.onSort("id")}">#</th>
+            <th scope="col" @click="${() => this.onSort("name")}">Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${this.pagedData.map(
+            (item) => html` <tr>
+              <th scope="row">${item.id}</th>
+              <td>${item.name}</td>
+            </tr>`
+          )}
+        </tbody>
+      </table>
+    `;
+  }
+}
+
+window.customElements.define("data-table", DataTable);
