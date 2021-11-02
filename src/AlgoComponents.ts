@@ -75,7 +75,7 @@ export class AlgoComponents extends LitElement {
           helpText="My Help"
         ></my-input>
         <my-select name="color" .data=${["yellow", "blue"]}></my-select>
-        <my-button>Click Me!</my-button>
+        <my-button type="primary">Click Me!</my-button>
       </my-form>
     </theme-provider>`;
   }
