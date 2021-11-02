@@ -16,6 +16,9 @@ export class MyButton extends BaseElement {
 
    /** Draws an outlined button. */
   @property({ type: Boolean, reflect: true }) outline = false;
+  
+  /** The button's size. */
+  @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
    
   constructor() {
     super();
@@ -42,6 +45,9 @@ export class MyButton extends BaseElement {
           'button--danger': this.type === 'danger',
           'button--text': this.type === 'text',
           'button--standard': !this.outline,
+          'button--small': this.size === 'small',
+          'button--medium': this.size === 'medium',
+          'button--large': this.size === 'large',
         })}
         type="button"
         @click="${this.onClick}"
