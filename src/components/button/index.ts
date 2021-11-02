@@ -14,11 +14,14 @@ export class MyButton extends BaseElement {
   render() {
     console.log("Rendering: Button");
 
-    return html`<input
-      type="button"
-      @click="${this.onClick}"
-      value="Submit"
-    />`;
+    return html`
+      <button
+        type="button"
+        @click="${this.onClick}"
+      >
+        <slot>Submit</slot>
+  </button>
+    `;
   }
 }
 window.customElements.define("my-button", MyButton);
