@@ -26,6 +26,11 @@ export class MyInput extends BaseElement {
     `;
   }
 
+  private refire(event: Event) {
+    event.stopPropagation();
+    this.fire(event.type, { sourceEvent: event });
+  }
+
   render() {
     console.log("Rendering: MyInput");
     return html`<input
@@ -34,6 +39,7 @@ export class MyInput extends BaseElement {
         name="${this.name}"
         value=${this.defaultValue}
         placeholder=${this.placeholder}
+        @change="${this.refire}" 
       /><span>${this.helpText}</span>`;
   }
 }
