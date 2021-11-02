@@ -10,14 +10,6 @@ export class Pagination extends BaseElement {
   @property({ type: Number }) noOfPages;
 
 
-  // static get properties() {
-  //   return {
-  //     pageSize: { type: Number },
-  //     totalrecords: { type: Number },
-  //     noOfPages: { type: Number },
-  //   };
-  // }
-
   constructor() {
     super();
     this.totalrecords = 0;

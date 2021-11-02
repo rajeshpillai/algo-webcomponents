@@ -63,9 +63,9 @@ export class AlgoComponents extends LitElement {
 
   render() {
     var data = [
-      { id: 1, name: "Abc" },
-      { id: 2, name: "Urvashi Sachdev" },
-      { id: 3, name: "Mannavi Sachdev" },
+      { id: 1, name: "Tom" },
+      { id: 2, name: "Jerry" },
+      { id: 3, name: "Donald" },
     ];
     return html`<theme-provider theme="black">
       <my-form @on-submit="${this.onSubmit}">
