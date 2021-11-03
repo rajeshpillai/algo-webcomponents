@@ -12,19 +12,19 @@ export class MyInput extends BaseElement {
     super();
   }
 
-  static get styles() {
-    return css`
-      :host input {
-        display: block;
-        color: var(--my-element-text-color, black);
-        background: var("--my-element-background-color", white);
-        font-family: var(--my-element-font-family, Roboto);
-      }
-      :host([hidden]) {
-        display: none;
-      }
-    `;
-  }
+  // static get styles() {
+  //   return css`
+  //     :host input {
+  //       display: block;
+  //       color: var(--my-element-text-color, black);
+  //       background: var("--my-element-background-color", white);
+  //       font-family: var(--my-element-font-family, Roboto);
+  //     }
+  //     :host([hidden]) {
+  //       display: none;
+  //     }
+  //   `;
+  // }
 
   private refire(event: Event) {
     event.stopPropagation();

@@ -8,7 +8,7 @@ import BaseElement from "../base-element";
 import styles from './button.styles';
 
 export class MyButton extends BaseElement {
-  static styles = styles;
+  // static styles = styles;
 
    /** The button's type. */
    @property({ reflect: true }) type: 'default' | 'primary' | 'success' | 'neutral' | 'warning' | 'danger' | 'text' =
@@ -24,11 +24,14 @@ export class MyButton extends BaseElement {
     super();
   }
   
-  onClick() {
+  onClick(e: { preventDefault: () => void; }) {
+    e.preventDefault();
     this.dispatchEvent(
       new CustomEvent("my-submit", { bubbles: true, composed: true })
     );
   }
+
+ 
   render() {
     console.log("Rendering: Button");
 
@@ -36,9 +39,9 @@ export class MyButton extends BaseElement {
       <button
       part="base"
       class=${classMap({
-          button: true,
+          button: false,
           'button--default': this.type === 'default',
-          'button--primary': this.type === 'primary',
+          'btn btn-primary': this.type === 'primary',
           'button--success': this.type === 'success',
           'button--neutral': this.type === 'neutral',
           'button--warning': this.type === 'warning',
