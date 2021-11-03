@@ -9,6 +9,8 @@ import "./components/input";
 import "./components/pagination";
 import "./components/theme/theme-provider";
 import "./components/select";
+import "./components/container";
+import "./components/link";
 
 export class AlgoComponents extends LitElement {
   @property({ type: String }) title = 'My app';
@@ -68,15 +70,19 @@ export class AlgoComponents extends LitElement {
       { id: 3, name: "Donald" },
     ];
     return html`<theme-provider theme="black">
-      <my-form @on-submit="${this.onSubmit}">
-        <my-input
-          name="title"
-          placeholder="Title"
-          helpText="My Help"
-        ></my-input>
-        <my-select name="color" .data=${["yellow", "blue"]}></my-select>
-        <my-button type="primary">Click Me!</my-button>
-      </my-form>
+      <my-container>
+          <my-link text="Home"></my-link>
+          <my-link text="Features">Home</my-link>
+          <my-form @on-submit="${this.onSubmit}">
+            <my-input
+              name="title"
+              placeholder="Title"
+              helpText="My Help"
+            ></my-input>
+            <my-select name="color" .data=${["yellow", "blue"]}></my-select>
+            <my-button type="primary">Click Me!</my-button>
+          </my-form>
+      </my-container>
     </theme-provider>`;
   }
 }
