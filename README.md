@@ -28,3 +28,9 @@ npm init @open-wc
 For most of the tools, the configuration is in the `package.json` to reduce the amount of files in your project.
 
 If you customize the configuration a lot, you can consider moving them to individual files.
+
+
+# References
+  - https://lit.dev/docs/components/lifecycle/#custom-element-lifecycle
+  - https://piccalil.li/tutorial/
+  build-a-fully-responsive-progressively-enhanced-burger-menu/

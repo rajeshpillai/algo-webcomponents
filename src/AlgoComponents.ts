@@ -11,6 +11,8 @@ import "./components/theme/theme-provider";
 import "./components/select";
 import "./components/container";
 import "./components/link";
+import "./components/navbar/navbar";
+import "./components/navbar/nav-mobile-toggle";
 
 export class AlgoComponents extends LitElement {
   @property({ type: String }) title = 'My app';
@@ -69,19 +71,26 @@ export class AlgoComponents extends LitElement {
       { id: 2, name: "Jerry" },
       { id: 3, name: "Donald" },
     ];
-    return html`<theme-provider theme="black">
+    return html`
+    <theme-provider theme="black">
       <my-container>
-          <my-link text="Home"></my-link>
-          <my-link text="Features">Home</my-link>
-          <my-form @on-submit="${this.onSubmit}">
-            <my-input
-              name="title"
-              placeholder="Title"
-              helpText="My Help"
-            ></my-input>
-            <my-select name="color" .data=${["yellow", "blue"]}></my-select>
-            <my-button type="primary">Click Me!</my-button>
-          </my-form>
+        <my-nav-bar>
+          <nav id="my-menu">
+            <a href="#">Home</a>
+            <a href="#">About Us</a>
+          </nav>
+          <!--<my-nav-mobile-toggle>Menu</my-nav-mobile-toggle> -->
+        </my-nav-bar>
+        <my-link text="Features">Home</my-link>
+        <my-form @on-submit="${this.onSubmit}">
+          <my-input
+            name="title"
+            placeholder="Title"
+            helpText="My Help"
+          ></my-input>
+          <my-select name="color" .data=${["yellow", "blue"]}></my-select>
+          <my-button type="primary">Click Me!</my-button>
+        </my-form>
       </my-container>
     </theme-provider>`;
   }
