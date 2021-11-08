@@ -15,7 +15,7 @@ export class NavBar extends BaseElement {
 
   connectedCallback() {
     super.connectedCallback();
-    this.initialMarkup = this.innerHTML;
+    this.initialMarkup = this.innerHTML; // todo: Initial markup passed in the component
 
     this.addEventListener("toggle-menu", (e) => {
       this.classList.toggle("open");
