@@ -2,6 +2,14 @@
   <img width="200" src="https://open-wc.org/hero.png"></img>
 </p>
 
+
+# For running this project
+- git clone
+- npm install
+- npm run start
+
+# For new open-wc project follow steps outlined below
+
 ## Open-wc Starter App
 
 [![Built with open-wc recommendations](https://img.shields.io/badge/built%20with-open--wc-blue.svg)](https://github.com/open-wc)
