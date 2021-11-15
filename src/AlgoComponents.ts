@@ -13,9 +13,11 @@ import "./components/container";
 import "./components/link";
 import "./components/navbar/navbar";
 import "./components/navbar/nav-mobile-toggle";
+import "./components/dialog";
 
 export class AlgoComponents extends LitElement {
   @property({ type: String }) title = 'My app';
+  @property({ type: Boolean }) show = true;
 
   static styles = css`
     :host {
@@ -41,6 +43,42 @@ export class AlgoComponents extends LitElement {
       animation: app-logo-spin infinite 20s linear;
     }
 
+    ::part(my-dialog-header){
+          background-color: lightgray;
+          font: verdana;
+          font-size:15px;
+          font-weight:800;
+        }
+        /* ::part(my-dialog-header)::after{
+        
+        } */
+
+      ::part(my-dialog-body){
+        font: verdana;
+        font-size:13px;
+        padding:  5px;
+      }
+
+    ::part(my-dialog){      
+          border: 1px solid red;
+          background-color: white;
+          /* width: auto; */
+          max-width: 500px;
+          height: auto;
+          min-height:100px;
+          max-height:500px;
+          position: absolute;
+          top: 100px;
+          left: 100px;        
+    }
+
+    ::part(my-dialog-footer){
+      background-color: yellow;
+      padding: 5px;
+      font-size:12px;
+     }
+    
+
     @keyframes app-logo-spin {
       from {
         transform: rotate(0deg);
@@ -64,6 +102,23 @@ export class AlgoComponents extends LitElement {
     e.preventDefault();
     console.log(e.detail);
   }
+
+  toggleDialog(e: { preventDefault: () => void }) {
+    e.preventDefault();
+    // this.shadowRoot?.querySelector("my-dialog")?.firstChild.style.display="none";
+    console.log("dialog",this.shadowRoot?.querySelector("my-dialog"));
+    this.show = !this.show;
+    // document.querySelector(".dialog-overview").show();
+  }
+
+  // connectedCallback() {
+  //   super.connectedCallback();
+  //   // debugger;
+  //   // document.querySelector("my-dialog")?.hide();
+  //   // this.shadowRoot.querySelector(".dialog-overview").hide();
+  // }
+
+ 
 
   render() {
     var data = [
@@ -91,7 +146,14 @@ export class AlgoComponents extends LitElement {
           <my-select name="color" .data=${["yellow", "blue"]}></my-select>
           <my-button type="primary">Click Me!</my-button>
         </my-form>
+        <my-button type="success" @click=${this.toggleDialog}>Show Dialog</my-button>
+        <my-dialog .show=${this.show} class="alert-closable" width="300px">
+          <my-dialog-header>My Header....</my-dialog-header>
+          <my-dialog-body>My dialog goes here111</my-dialog-body>
+          <my-dialog-footer>My Dialog Footer</my-dialog-footer>
+        </my-dialog>
       </my-container>
-    </theme-provider>`;
+    </theme-provider>
+   `;
   }
 }
